@@ -1,21 +1,20 @@
 {
-  "name": "veldchat-bot",
+  "name": "veld-chat-bot",
   "version": "1.0.0",
-  "description": "Bot template for veldchat.",
+  "description": "Bot for veldchat.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "AshtonMemer",
+  "author": "MILLION",
   "license": "ISC",
   "dependencies": {
     "canvas": "^2.6.1",
     "form-data": "^3.0.0",
-    "fs": "0.0.1-security",
     "jason.db": "^0.1.27",
     "loggers": "github:million900o/loggers",
     "node-fetch": "^2.6.1",
     "socket.io-client": "^2.3.1",
-    "veld-chat-api": "github:Million900o/veld-chat-api"
+    "veld-chat-api": "github:million900o/veld-chat-api"
   }
 }
