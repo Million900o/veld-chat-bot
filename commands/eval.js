@@ -4,6 +4,7 @@ const util = require('util')
 module.exports = {
   name: 'eval',
   aliases: ['ev'],
+  description: 'Evaluate some js code',
   run: (client, message, args) => {
     if(!client.DB.collection('settings').get('owners').includes(message.user.id)) return;
     try {

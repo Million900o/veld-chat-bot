@@ -1,6 +1,7 @@
 module.exports = {
   name: 'stats',
   aliases: ['ce'],
+  description: 'Get the bot\'s stats',
   run: (client, message, args) => {
     const cachedUsers = client.users.size
     const cachedChannels = client.channels.size

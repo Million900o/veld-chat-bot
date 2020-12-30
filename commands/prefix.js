@@ -3,6 +3,7 @@ const { Embed } = require("veld-chat-api");
 module.exports = {
   name: 'prefix',
   aliases: [],
+  description: 'Change the bot\'s prefix',
   run: (client, message, args) => {
     if(!args[0]) return message.channel.send(new Embed().setTitle('Prefix').addField('Current Prefix', client.DB.collection('settings').get('prefix')))
     const prefix = String(args[0]);

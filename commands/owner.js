@@ -3,6 +3,7 @@ const { Embed } = require("veld-chat-api");
 module.exports = {
   name: 'owner',
   aliases: ['owo'],
+  description: 'Add or remove someone as owner',
   run: (client, message, args) => {
     if(!client.DB.collection('settings').get('owners').includes(message.user.id)) return;
     if(message.mentions) {

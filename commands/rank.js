@@ -7,6 +7,7 @@ const { Embed } = require("veld-chat-api");
 module.exports = {
   name: 'rank',
   aliases: [],
+  description: 'Get your rank',
   run: async (client, message, args) => {
     if (!message.client.DB.collection('levels').has(message.user.id)) setLevelData(message)
     const data = message.client.DB.collection('levels').get(message.user.id)
