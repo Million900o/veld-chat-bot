@@ -1,4 +1,4 @@
-const { Embed } = require('veldchat.js');
+const { Embed } = require('veld-chat-api');
 const util = require('util')
 
 module.exports = {

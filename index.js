@@ -12,7 +12,7 @@ if(!DB.collection('settings').has('owners')) {
   DB.collection('settings').set('owners', []);
 }
 
-const veldchat = require('veldchat.js')
+const veldchat = require('veld-chat-api')
 const client = new veldchat.Client(config.token, { debug: true, name: config.name })
 client.commandHandler = new (require('./commandHandler'))(client, DB.collection('settings').get('prefix'), 'commands', { debug: true })
 

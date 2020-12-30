@@ -2,7 +2,7 @@ const Canvas = require('canvas');
 const fetch = require('node-fetch');
 const FormData = require('form-data');
 const config = require('../config.json')
-const { Embed } = require("veldchat.js");
+const { Embed } = require("veld-chat-api");
 
 module.exports = {
   name: 'rank',

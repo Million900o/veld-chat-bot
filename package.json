@@ -16,6 +16,6 @@
     "loggers": "github:million900o/loggers",
     "node-fetch": "^2.6.1",
     "socket.io-client": "^2.3.1",
-    "veldchat.js": "github:Million900o/veld-chat-api"
+    "veld-chat-api": "github:Million900o/veld-chat-api"
   }
 }
