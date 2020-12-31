@@ -3,6 +3,6 @@ module.exports = {
   aliases: ['p', 'pping'],
   description: 'Get the bot\'s ping',
   run: (client, message, args) => {
-    client.sendEmbed(message, 'Ping',[ { name: 'Socket Ping', value: 'undefined' }])
+    client.sendEmbed(message, 'Ping',[ { name: 'Socket Ping', value: client.restPint }])
   }
 }
