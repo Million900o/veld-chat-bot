@@ -1,17 +1,24 @@
-const { Embed } = require("veld-chat-api");
-const util = require('util')
+const { Embed } = require('veld-chat-api');
+const util = require('util');
 
 module.exports = {
   name: 'eval',
   aliases: ['ev'],
   description: 'Evaluate some js code',
-  run: (client, message, args) => {
-    if(!client.DB.collection('settings').get('owners').includes(message.user.id)) return;
+  run: async (client, message, args) => {
+    if (!client.DB.collection('settings').get('owners').includes(message.user.id)) return;
+    if (!args[0]) return message.channel.send('Code required.');
+    let output, state;
     try {
-      const code = util.inspect(eval(args.join(' ')));
-      message.channel.send(new Embed().setTitle('Eval Successful').setDescription(code));
+      let evaled = eval(args.join(' '));
+      if (evaled instanceof Promise) evaled = await evaled;
+      evaled = util.inspect(evaled);
+      output = evaled;
+      state = 'Evaluation successful';
     } catch (err) {
-      message.channel.send(new Embed().setTitle('Eval Unsuccessful').setDescription(err.toString()));
+      output = err;
+      state = 'Evaluation unsuccessful';
     }
+    return message.channel.send(new Embed().setTitle(state).setDescription(output));
   }
 }
