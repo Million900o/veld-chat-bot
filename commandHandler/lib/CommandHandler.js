@@ -26,20 +26,20 @@ module.exports = class CommandHandler {
     })
   }
 
-  handleCommand (message) {
+  handleCommand(message) {
     const content = message.content;
-    if(content) {
-      if(content.startsWith(this.prefix)) {
+    if (content) {
+      if (content.startsWith(this.prefix)) {
         const contentArray = message.content.slice(this.prefix.length).split(' ')
         const commandName = contentArray[0];
         const args = contentArray.slice(1);
         const command = this.aliases.get(commandName) || this.commands.get(commandName);
-        if(command) {
+        if (command) {
           this.logger.debug('Ran command', command.name)
           command.run(this.client, message, args)
-        } else if (content === '@' + this.client.user.name) {
-          this.client.sendEmbed(message, 'Prefix', `The current prefix is \`${this.prefix}\``)
         } else return;
+      } else if (content.split(' ').join('') === '@' + this.client.user.name) {
+        this.client.sendEmbed(message, 'Prefix', [{ name: 'Current Prefix', value: '**' + this.prefix + '**'}])
       } else return;
     }
   };
