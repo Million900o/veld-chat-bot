@@ -7,7 +7,7 @@ module.exports = {
     const cachedChannels = Object.keys(client.cache.channels).length
     const mem = {};
     Object.entries(process.memoryUsage()).map(e => mem[e[0]] = Math.round(e[1] / 1024 / 1024 * 10) / 10 + "MB");
-    client.sendEmbed(message, 'Ping',[ 
+    client.sendEmbed(message, 'Stats',[ 
       { name: 'Memory', value: mem.rss },
       { name: 'Cached Users', value: cachedUsers },
       { name: 'Cached Channels', value: cachedChannels }

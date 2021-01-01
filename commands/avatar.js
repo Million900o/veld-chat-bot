@@ -5,10 +5,10 @@ module.exports = {
   run: (client, message, args) => {
     if(message.mentions.length > 0) {
       const user = client.users.get(message.mentions[0]);
-      message.channel.send(user.avatarUrl);
+      message.channel.send(user.avatarURL);
       return;
     }
-    message.channel.send(message.author.avatarUrl);
+    message.channel.send(message.author.avatarURL);
     return;
   }
 }
