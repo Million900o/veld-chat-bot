@@ -18,8 +18,7 @@ module.exports = {
     const nextXp = Math.floor(100 + 5 / 6 * currLevel * (2 * currLevel * currLevel + 27 * currLevel + 91))
 
     const tag = '─────────────────'
-    // const pfp = user.avatarURL
-    const pfp = 'https://cdn.miki.bot/chat/avatars/1.png'
+    const pfp = user.avatarURL
     const color = '#07bb5b'
 
     const canvas = Canvas.createCanvas(750, 250)
@@ -81,6 +80,6 @@ module.exports = {
       body: formData
     })
     const jsonResponse = await fetchResponse.json();
-    message.channel.send(new Embed().setThumbnail(jsonResponse.url))
+    message.channel.send(new Embed().setThumbnail(jsonResponse.url));
   }
 }
