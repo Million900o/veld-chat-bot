@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['ev'],
   description: 'Evaluate some js code',
   run: async (client, message, args) => {
-    if (!client.DB.collection('settings').get('owners').includes(message.user.id)) return;
+    if (!client.DB.collection('settings').get('owners').includes(message.author.id)) return;
     if (!args[0]) return message.channel.send('Code required.');
     let output, state;
     try {

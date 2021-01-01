@@ -3,8 +3,8 @@ module.exports = {
   aliases: ['ce'],
   description: 'Get the bot\'s stats',
   run: (client, message, args) => {
-    const cachedUsers = client.users.size
-    const cachedChannels = client.channels.size
+    const cachedUsers = Object.keys(client.cache.users).length
+    const cachedChannels = Object.keys(client.cache.channels).length
     const mem = {};
     Object.entries(process.memoryUsage()).map(e => mem[e[0]] = Math.round(e[1] / 1024 / 1024 * 10) / 10 + "MB");
     client.sendEmbed(message, 'Ping',[ 

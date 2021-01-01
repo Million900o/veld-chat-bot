@@ -8,7 +8,7 @@ module.exports = {
       message.channel.send(user.avatarUrl);
       return;
     }
-    message.channel.send(message.user.avatarUrl);
+    message.channel.send(message.author.avatarUrl);
     return;
   }
 }

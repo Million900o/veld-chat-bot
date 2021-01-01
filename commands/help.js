@@ -1,4 +1,5 @@
-const { Embed } = require("veld-chat-api");
+const veld = require("veld-chat-api");
+const Embed = veld.Embed
 
 module.exports = {
   name: 'help',
@@ -12,7 +13,7 @@ module.exports = {
         return;
       } else {
         const embed = new Embed()
-          .setAuthor(message.user.name + ' | Help', message.user.avatarUrl)
+          .setAuthor(message.author.name + ' | Help', message.author.avatarUrl)
           .setDescription('Command ' + args[0] + ' not found')
           .setFooter('Developed by MILLION')
         message.channel.send(embed)
@@ -20,7 +21,7 @@ module.exports = {
       }
     } else {
       const embed = new Embed()
-        .setAuthor(message.user.name + ' | Help', message.user.avatarUrl)
+        .setAuthor(message.author.name + ' | Help', message.author.avatarUrl)
         .setDescription(Array.from(client.commandHandler.commands.keys()).join(', '))
         .setFooter('Developed By MILLION')
       message.channel.send(embed);

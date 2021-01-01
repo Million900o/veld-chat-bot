@@ -9,16 +9,17 @@ module.exports = {
   aliases: [],
   description: 'Get your rank',
   run: async (client, message, args) => {
-    if (!message.client.DB.collection('levels').has(message.user.id)) setLevelData(message)
-    const data = message.client.DB.collection('levels').get(message.user.id)
-    const user = message.user
+    if (!client.DB.collection('levels').has(message.author.id)) setLevelData(message)
+    const data = client.DB.collection('levels').get(message.author.id)
+    const user = message.author
 
     const currLevel = data.level
     const currXp = data.xp
     const nextXp = Math.floor(100 + 5 / 6 * currLevel * (2 * currLevel * currLevel + 27 * currLevel + 91))
 
     const tag = '─────────────────'
-    const pfp = user.avatarUrl
+    // const pfp = user.avatarURL
+    const pfp = 'https://cdn.miki.bot/chat/avatars/1.png'
     const color = '#07bb5b'
 
     const canvas = Canvas.createCanvas(750, 250)

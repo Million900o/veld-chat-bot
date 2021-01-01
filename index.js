@@ -13,7 +13,8 @@ if(!DB.collection('settings').has('owners')) {
 }
 
 const veldchat = require('veld-chat-api')
-const client = new veldchat.Client(config.token, { debug: true, name: config.name })
+const client = new veldchat.Client()
+client.connect(config.token);
 client.commandHandler = new (require('./commandHandler'))(client, DB.collection('settings').get('prefix'), 'commands', { debug: true })
 
 client.DB = DB
@@ -24,7 +25,7 @@ client.sendEmbed = (m, title, fields) => {
     description = description ? description + '\n' + `**${field.name}**: ${field.value}` : `**${field.name}**: ${field.value}`
   })
   const embed = new veldchat.Embed()
-    .setAuthor(m.user.name + ' | ' + title, m.user.avatarUrl)
+    .setAuthor(m.author.name + ' | ' + title, m.author.avatarURL)
     .setDescription(description)
     .setFooter('Developed By MILLION')
     .setColor(0)
@@ -33,16 +34,16 @@ client.sendEmbed = (m, title, fields) => {
 }
 
 client.on('message', (m) => {
-  if(DB.collection('levels').has(m.user.id)) {
-    const data = DB.collection('levels').get(m.user.id);
+  if(DB.collection('levels').has(m.author.id)) {
+    const data = DB.collection('levels').get(m.author.id);
     data.xp = data.xp + Math.floor(Math.random() * 8) + 8;
     if (data.xp > Math.floor(100 + 5 / 6 * data.level * (2 * data.level * data.level + 27 * data.level + 91))) {
       data.xp = 0
       data.level++
     };
-    DB.collection('levels').set(m.user.id, data);
+    DB.collection('levels').set(m.author.id, data);
   } else {
-    DB.collection('levels').set(m.user.id, {
+    DB.collection('levels').set(m.author.id, {
       xp: 0,
       level: 0
     })

@@ -28,16 +28,18 @@ module.exports = class CommandHandler {
 
   handleCommand (message) {
     const content = message.content;
-    if(content.startsWith(this.prefix)) {
-      const contentArray = message.content.slice(this.prefix.length).split(' ')
-      const commandName = contentArray[0];
-      const args = contentArray.slice(1);
-      const command = this.aliases.get(commandName) || this.commands.get(commandName);
-      if(command) {
-        this.logger.debug('Ran command', command.name)
-        command.run(this.client, message, args)
+    if(content) {
+      if(content.startsWith(this.prefix)) {
+        const contentArray = message.content.slice(this.prefix.length).split(' ')
+        const commandName = contentArray[0];
+        const args = contentArray.slice(1);
+        const command = this.aliases.get(commandName) || this.commands.get(commandName);
+        if(command) {
+          this.logger.debug('Ran command', command.name)
+          command.run(this.client, message, args)
+        } else return;
       } else return;
-    } else return;
+    }
   };
 
 };
