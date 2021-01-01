@@ -37,6 +37,8 @@ module.exports = class CommandHandler {
         if(command) {
           this.logger.debug('Ran command', command.name)
           command.run(this.client, message, args)
+        } else if (content === '@' + this.client.user.name) {
+          this.client.sendEmbed(message, 'Prefix', `The current prefix is \`${this.prefix}\``)
         } else return;
       } else return;
     }
