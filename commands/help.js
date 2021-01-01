@@ -13,7 +13,7 @@ module.exports = {
         return;
       } else {
         const embed = new Embed()
-          .setAuthor(message.author.name + ' | Help', message.author.avatarUrl)
+          .setAuthor(message.author.name + ' | Help', message.author.avatarURL)
           .setDescription('Command ' + args[0] + ' not found')
           .setFooter('Developed by MILLION')
         message.channel.send(embed)
@@ -21,7 +21,7 @@ module.exports = {
       }
     } else {
       const embed = new Embed()
-        .setAuthor(message.author.name + ' | Help', message.author.avatarUrl)
+        .setAuthor(message.author.name + ' | Help', message.author.avatarURL)
         .setDescription(Array.from(client.commandHandler.commands.keys()).join(', '))
         .setFooter('Developed By MILLION')
       message.channel.send(embed);
