@@ -33,12 +33,7 @@ client.sendEmbed = (m, title, fields) => {
   return m.channel.send(embed);
 }
 
-client.on('raw', (r) => {
-  console.log(r)
-})
-
 client.on('message', (m) => {
-  console.log(m);
   if(DB.collection('levels').has(m.author.id)) {
     const data = DB.collection('levels').get(m.author.id);
     data.xp = data.xp + Math.floor(Math.random() * 8) + 8;
