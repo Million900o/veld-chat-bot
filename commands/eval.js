@@ -1,12 +1,21 @@
+const util = require('util')
+const { Command } = require('command-framework');
 const { Embed } = require('veld-chat-api');
-const util = require('util');
 
-module.exports = {
-  name: 'eval',
-  aliases: ['ev'],
-  description: 'Evaluate some js code',
-  run: async (client, message, args) => {
-    if (!client.DB.collection('settings').get('owners').includes(message.author.id)) return;
+class EvalCommand extends Command {
+  constructor(...args) {
+    super({
+      name: 'eval',
+      aliases: ['ev'],
+      requiredPermissions: null,
+      botPermissions: 100,
+      description: 'Eval some code.',
+      disabled: false,
+    }, ...args);
+  }
+
+  async run(message, args) {
+    // if (!this.client.DB.collection('settings').get('owners').includes(message.author.id)) return;
     if (!args[0]) return message.channel.send('Code required.');
     let output, state;
     try {
@@ -22,3 +31,5 @@ module.exports = {
     return message.channel.send(new Embed().setTitle(state).setDescription(output));
   }
 }
+
+module.exports = EvalCommand;

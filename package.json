@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "canvas": "^2.6.1",
+    "command-framework": "github:million900o/command-framework",
     "form-data": "^3.0.0",
     "jason.db": "^0.1.27",
     "loggers": "github:million900o/loggers",

@@ -1,15 +1,23 @@
-const veld = require("veld-chat-api");
-const Embed = veld.Embed
+const { Command } = require('command-framework');
+const { Embed } = require("veld-chat-api");
 
-module.exports = {
-  name: 'help',
-  aliases: ['h', 'halp', 'elp', '\'elp'],
-  description: 'Help menu smh',
-  run: (client, message, args) => {
+class HelpCommand extends Command {
+  constructor(...args) {
+    super({
+      name: 'help',
+      aliases: ['elp', '\'elp', 'h', 'halp'],
+      requiredPermissions: null,
+      botPermissions: 0,
+      description: 'You need some help.',
+      disabled: false,
+    }, ...args);
+  }
+
+  run(message, args) {
     if (args.length > 0) {
-      const command = client.commandHandler.aliases.get(args[0]) || client.commandHandler.commands.get(args[0])
+      const command = this.client.commandHandler.aliases.get(args[0]) || this.client.commandHandler.commands.get(args[0])
       if (command) {
-        client.sendEmbed(message, 'Help', [ { name: 'Name', value: command.name }, { name: 'Aliases', value: command.aliases.join(', ') }, { name: 'Description', value: command.description }])
+        this.client.sendEmbed(message, 'Help', [ { name: 'Name', value: command.name }, { name: 'Aliases', value: command.aliases.join(', ') }, { name: 'Description', value: command.description }])
         return;
       } else {
         const embed = new Embed()
@@ -22,10 +30,12 @@ module.exports = {
     } else {
       const embed = new Embed()
         .setAuthor(message.author.name + ' | Help', message.author.avatarURL)
-        .setDescription(Array.from(client.commandHandler.commands.keys()).join(', '))
+        .setDescription(Array.from(this.client.commandHandler.commands.keys()).join(', '))
         .setFooter('Developed By MILLION')
       message.channel.send(embed);
     }
     return;
   }
 }
+
+module.exports = HelpCommand;

@@ -1,14 +1,21 @@
-module.exports = {
-  name: 'avatar',
-  aliases: ['av'],
-  description: 'Get your cached avatar',
-  run: (client, message, args) => {
-    if(message.mentions.length > 0) {
-      const user = client.users.get(message.mentions[0]);
-      message.channel.send(user.avatarURL);
-      return;
-    }
+const { Command } = require('command-framework');
+
+class AvatarCommand extends Command {
+  constructor(...args) {
+    super({
+      name: 'avatar',
+      aliases: ['av'],
+      requiredPermissions: null,
+      botPermissions: 0,
+      description: 'Get your avatar.',
+      disabled: false,
+    }, ...args);
+  }
+
+  run(message, args) {
     message.channel.send(message.author.avatarURL);
     return;
   }
 }
+
+module.exports = AvatarCommand;

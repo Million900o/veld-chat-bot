@@ -1,6 +1,6 @@
 const config = require('./config.json')
 const jasondb = require('jason.db')
-const DB = new jasondb.DB('data.jason', { writeFile: true, renameFile: true })
+const DB = new jasondb.PoggersDB('poggers.jason', { writeFile: true, renameFile: true })
 DB.collection('settings')
 DB.collection('levels')
 
@@ -14,8 +14,7 @@ if(!DB.collection('settings').has('owners')) {
 
 const veldchat = require('veld-chat-api')
 const client = new veldchat.Client()
-client.connect(config.token);
-client.commandHandler = new (require('./commandHandler'))(client, DB.collection('settings').get('prefix'), 'commands', { debug: true })
+client.commandHandler = new (require('command-framework')).Handler({defaultPrefix: 'ra', commandDir: 'commands' }, client)
 
 client.DB = DB
 
@@ -25,11 +24,11 @@ client.sendEmbed = (m, title, fields) => {
     description = description ? description + '\n' + `**${field.name}**: ${field.value}` : `**${field.name}**: ${field.value}`
   })
   const embed = new veldchat.Embed()
-    .setAuthor(m.author.name + ' | ' + title, m.author.avatarURL)
-    .setDescription(description)
-    .setFooter('Developed By MILLION')
-    .setColor(0)
-    .parse()
+  .setAuthor(m.author.name + ' | ' + title, m.author.avatarURL)
+  .setDescription(description)
+  .setFooter('Developed By MILLION')
+  .setColor(0)
+  .parse()
   return m.channel.send(embed);
 }
 
@@ -49,3 +48,5 @@ client.on('message', (m) => {
     })
   }
 })
+
+client.connect(config.token);
