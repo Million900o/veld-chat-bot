@@ -1,8 +1,8 @@
 const config = require('./config.json')
 const jasondb = require('jason.db')
 const DB = new jasondb.DB('data.jason', { writeFile: true, renameFile: true })
-DB.collection('settings', { caching: true })
-DB.collection('levels', { caching: true })
+DB.collection('settings')
+DB.collection('levels')
 
 if(!DB.collection('settings').has('prefix')) {
   DB.collection('settings').set('prefix', 'ra');
@@ -33,7 +33,12 @@ client.sendEmbed = (m, title, fields) => {
   return m.channel.send(embed);
 }
 
+client.on('raw', (r) => {
+  console.log(r)
+})
+
 client.on('message', (m) => {
+  console.log(m);
   if(DB.collection('levels').has(m.author.id)) {
     const data = DB.collection('levels').get(m.author.id);
     data.xp = data.xp + Math.floor(Math.random() * 8) + 8;
