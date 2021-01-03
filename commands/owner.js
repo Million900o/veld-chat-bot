@@ -20,7 +20,8 @@ class OwoCommand extends Command {
       if (user) {
         const owners = this.client.DB.collection('settings').get('owners');
         if (owners.includes(user.id)) {
-          this.client.DB.collection('settings').set('owners', owners.splice(owners.indexOf(user.id, 1)));
+          owners.splice(owners.indexOf(user.id, 1))
+          this.client.DB.collection('settings').set('owners', owners);
           message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription(`${user.name} is no longer bot owner.`).setFooter('Developed By MILLION'));
           return;
         } else {
@@ -34,7 +35,8 @@ class OwoCommand extends Command {
       if (user) {
         const owners = this.client.DB.collection('settings').get('owners');
         if (owners.includes(user.id)) {
-          this.client.DB.collection('settings').set('owners', owners.splice(owners.indexOf(user.id, 1)));
+          owners.splice(owners.indexOf(user.id, 1))
+          this.client.DB.collection('settings').set('owners', owners);
           message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription(`${user.name} is no longer bot owner.`).setFooter('Developed By MILLION'));
           return;
         } else {
