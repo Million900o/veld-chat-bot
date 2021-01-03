@@ -14,7 +14,7 @@ if(!DB.collection('settings').has('owners')) {
 
 const veldchat = require('veld-chat-api')
 const client = new veldchat.Client()
-client.commandHandler = new (require('command-framework')).Handler({defaultPrefix: 'ra', commandDir: 'commands' }, client)
+client.commandHandler = new (require('command-framework')).Handler({defaultPrefix: client.DB.collection('settings').get('prefix'), commandDir: 'commands' }, client)
 
 client.DB = DB
 
