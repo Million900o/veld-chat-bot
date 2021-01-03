@@ -15,7 +15,7 @@ class EvalCommand extends Command {
   }
 
   async run(message, args) {
-    // if (!this.client.DB.collection('settings').get('owners').includes(message.author.id)) return;
+    if (!this.client.DB.collection('settings').get('owners').includes(message.author.id)) return;
     if (!args[0]) return message.channel.send('Code required.');
     let output, state;
     try {
