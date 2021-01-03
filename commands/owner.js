@@ -20,32 +20,69 @@ class OwoCommand extends Command {
       if (user) {
         const owners = this.client.DB.collection('settings').get('owners');
         if (owners.includes(user.id)) {
-          owners.splice(owners.indexOf(user.id, 1))
+          owners.splice(owners.indexOf(user.id, 1));
           this.client.DB.collection('settings').set('owners', owners);
-          message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription(`${user.name} is no longer bot owner.`).setFooter('Developed By MILLION'));
+          const embed = new Embed()
+            .setAuthor(message.author.name, message.author.avatarURL)
+            .setDescription(`${user.name} is no longer bot owner.`)
+            .setFooter('Developed By MILLION');
+          message.channel.send(embed);
           return;
         } else {
           this.client.DB.collection('settings').push('owners', user.id);
-          message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription(`${user.name} is now bot owner!`).setFooter('Developed By MILLION'));
+          const embed = new Embed()
+            .setAuthor(message.author.name, message.author.avatarURL)
+            .setDescription(`${user.name} is now bot owner!`)
+            .setFooter('Developed By MILLION');
+          message.channel.send(embed);
           return;
         }
-      } else message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription('User is not cached.').setFooter('Developed By MILLION'));
+      } else {
+        const embed = new Embed()
+          .setAuthor(message.author.name, message.author.avatarURL)
+          .setDescription('User is not cached.')
+          .setFooter('Developed By MILLION');
+        message.channel.send(embed);
+        return;
+      }
     } else if (args.length) {
       const user = Object.values(this.client.cache.users).find(u => u.name == args.join(' '));
       if (user) {
         const owners = this.client.DB.collection('settings').get('owners');
         if (owners.includes(user.id)) {
-          owners.splice(owners.indexOf(user.id, 1))
+          owners.splice(owners.indexOf(user.id, 1));
           this.client.DB.collection('settings').set('owners', owners);
-          message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription(`${user.name} is no longer bot owner.`).setFooter('Developed By MILLION'));
+          const embed = new Embed()
+            .setAuthor(message.author.name, message.author.avatarURL)
+            .setDescription(`${user.name} is no longer bot owner.`)
+            .setFooter('Developed By MILLION');
+          message.channel.send(embed);
           return;
         } else {
           this.client.DB.collection('settings').push('owners', user.id);
-          message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription(`${user.name} is now bot owner!`).setFooter('Developed By MILLION'));
+          const embed = new Embed()
+            .setAuthor(message.author.name, message.author.avatarURL)
+            .setDescription(`${user.name} is now bot owner!`)
+            .setFooter('Developed By MILLION');
+          message.channel.send(embed);
           return;
         }
-      } else message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription('User not found.').setFooter('Developed By MILLION'));
-    } else return message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription('No mention or user name provided.').setFooter('Developed By MILLION'));
+      } else {
+        const embed = new Embed()
+          .setAuthor(message.author.name, message.author.avatarURL)
+          .setDescription('User not found.')
+          .setFooter('Developed By MILLION');
+        message.channel.send(embed);
+        return;
+      }
+    } else {
+      const embed = new Embed()
+        .setAuthor(message.author.name, message.author.avatarURL)
+        .setDescription('No mention or user name provided.')
+        .setFooter('Developed By MILLION');
+      message.channel.send(embed);
+      return;
+    }
   }
 }
 
