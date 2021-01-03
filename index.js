@@ -1,6 +1,6 @@
 const config = require('./config.json')
 const jasondb = require('jason.db')
-const DB = new jasondb.PoggersDB('poggers.jason', { writeFile: true, renameFile: true })
+const DB = new jasondb.DB('data.jason', { writeFile: true, renameFile: true })
 DB.collection('settings')
 DB.collection('levels')
 

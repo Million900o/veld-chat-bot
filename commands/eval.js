@@ -28,7 +28,7 @@ class EvalCommand extends Command {
       output = err;
       state = 'Evaluation unsuccessful';
     }
-    return message.channel.send(new Embed().setTitle(state).setDescription(output));
+    return message.channel.send(new Embed().setTitle(state).setDescription('```js\n' + output + '\n```'));
   }
 }
 
