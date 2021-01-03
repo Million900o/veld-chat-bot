@@ -34,7 +34,7 @@ class OwoCommand extends Command {
       if (user) {
         const owners = this.client.DB.collection('settings').get('owners');
         if (owners.includes(user.id)) {
-          owners.splice(owners.indexOf(user.id, 1));
+          this.client.DB.collection('settings').set('owners', owners.splice(owners.indexOf(user.id, 1)));
           message.channel.send(new Embed().setAuthor(message.author.name, message.author.avatarURL).setDescription(`${user.name} is no longer bot owner.`).setFooter('Developed By MILLION'));
           return;
         } else {
