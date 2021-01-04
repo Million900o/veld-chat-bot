@@ -1,4 +1,4 @@
-const util = require('util')
+const util = require('util');
 const { Command } = require('command-framework');
 const { Embed } = require('veld-chat-api');
 
@@ -28,7 +28,10 @@ class EvalCommand extends Command {
       output = err;
       state = 'Evaluation unsuccessful';
     }
-    return message.channel.send(new Embed().setTitle(state).setDescription('```js\n' + output + '\n```'));
+    const embed = new Embed()
+      .setTitle(state)
+      .setDescription('```js\n' + output + '\n```');
+    return message.channel.send(embed);
   }
 }
 
