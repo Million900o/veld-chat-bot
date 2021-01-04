@@ -22,7 +22,7 @@ class EvalCommand extends Command {
       let evaled = eval(args.join(' '));
       if (evaled instanceof Promise) evaled = await evaled;
       evaled = util.inspect(evaled);
-      output = evaled;
+      output = evaled.split(this.client.token).join('[TOKEN REMOVED]');
       state = 'Evaluation successful';
     } catch (err) {
       output = err;
