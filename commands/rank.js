@@ -90,7 +90,9 @@ class RankCommand extends Command {
       body: formData
     });
     const jsonResponse = await fetchResponse.json();
-    message.channel.send(new Embed().setThumbnail(jsonResponse.url));
+    const embed = new Embed()
+      .setThumbnail(jsonResponse.url);
+    message.channel.send(embed);
   }
 }
 
