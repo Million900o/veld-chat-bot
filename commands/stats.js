@@ -23,6 +23,7 @@ class StatsCommand extends Command {
       { name: 'Cached Users', value: cachedUsers },
       { name: 'Cached Channels', value: cachedChannels }
     ]);
+    return;
   }
 }
 
