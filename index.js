@@ -18,19 +18,7 @@ client.commandHandler = new (require('command-framework')).Handler({defaultPrefi
 
 client.DB = DB
 
-client.sendEmbed = (m, title, fields) => {
-  let description;
-  fields.forEach(field => {
-    description = description ? description + '\n' + `**${field.name}**: ${field.value}` : `**${field.name}**: ${field.value}`
-  })
-  const embed = new veldchat.Embed()
-  .setAuthor(m.author.name + ' | ' + title, m.author.avatarURL)
-  .setDescription(description)
-  .setFooter('Developed By MILLION')
-  .setColor(0)
-  .parse()
-  return m.channel.send(embed);
-}
+client.sendEmbed = require('./functions/sendEmbed')
 
 client.on('message', (m) => {
   if(DB.collection('levels').has(m.author.id)) {
