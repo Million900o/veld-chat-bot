@@ -14,11 +14,21 @@ class PrefixCommand extends Command {
   }
 
   run(message, args) {
-    if(!args[0]) return message.channel.send(new Embed().setTitle('Prefix').addField('Current Prefix', this.client.DB.collection('settings').get('prefix')))
-    const prefix = String(args.join(' '));
+    if (!args[0]) {
+      const embed = new Embed()
+        .setTitle('Prefix')
+        .addField('Current Prefix', this.client.DB.collection('settings').get('prefix'));
+      message.channel.send(embed);
+      return;
+    }
+    const prefix = args.join(' ');
     this.client.commandHandler.options.defaultPrefix = prefix;
     this.client.DB.collection('settings').set('prefix', prefix);
-    message.channel.send(new Embed().setTitle('Prefix').addField('New Prefix', prefix))
+    const embed = new Embed()
+      .setTitle('Prefix')
+      .addField('New Prefix', prefix);
+    message.channel.send(embed);
+    return;
   }
 }
 
