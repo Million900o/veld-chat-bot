@@ -15,6 +15,7 @@
     "jason.db": "^0.1.27",
     "loggers": "github:million900o/loggers",
     "node-fetch": "^2.6.1",
+    "shiro-ts": "github:million900o/shiro-ts",
     "socket.io-client": "^2.3.1",
     "veld-chat-api": "github:million900o/veld-chat-api"
   }
