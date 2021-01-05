@@ -20,7 +20,7 @@ class AvatarCommand extends Command {
     const code = response.code
     if(code === 200) {
       const embed = new Embed()
-        .setAuthor(message.author.name + ' patted ' + user.name, message.author.avatarURL)
+        .setAuthor(message.author.name + ' pet ' + user.name, message.author.avatarURL)
         .setThumbnail(response.url);
       message.channel.send(embed);
       return;
